@@ -14,6 +14,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Consolas', 'Segoe UI', monospace;
+    user-select: none;
 }
 
 body {
@@ -38,6 +39,30 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+marquee {
+    margin-top: 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--neon-cyan);
+    padding: 0 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--neon-cyan);
+    transition: color 0.3s, text-shadow 0.3s;
+    font-style: italic;
+}
+
+marquee a {
+    color: inherit;
+    text-decoration: none;
+}
+
+marquee:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 12px var(--neon-pink);
+    cursor: pointer;
 }
 
 .logo {
@@ -112,6 +137,7 @@ nav {
 }
 
 .cyber-btn {
+    transform-style: preserve-3d;
     display: inline-block;
     padding: 16px 40px;
     background: var(--neon-cyan);
@@ -120,14 +146,13 @@ nav {
     text-decoration: none;
     letter-spacing: 2px;
     clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
-    transition: all 0.3s ease;
+
+    transition: transform 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
 .cyber-btn:hover {
     background: var(--neon-pink);
     color: #fff;
-    box-shadow: 0 0 30px var(--neon-pink);
-    transform: translateY(-3px);
 }
 
 .container {
@@ -213,22 +238,15 @@ nav {
     border: 1px solid var(--glass-border);
     border-radius: 4px;
     backdrop-filter: blur(8px);
+    transition: box-shadow 1s;
 }
 
 .spec-row {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.067);
     transition: background 0.3s ease;
-}
-
-.spec-row:last-child {
-    border-bottom: none;
-}
-
-.spec-row:hover {
-    background: rgba(0, 240, 255, 0.05);
 }
 
 .spec-label {
@@ -251,11 +269,17 @@ nav {
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
+}
+
+.media-box:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.media-box:nth-child(2) {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 }
 
 .media-box::before {
-    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -264,6 +288,11 @@ nav {
             rgba(0, 0, 0, 0.25) 2px,
             transparent 2px,
             transparent 4px);
+}
+
+.media-box a,
+.media-box a:hover {
+    text-decoration: none;
 }
 
 .media-overlay {
@@ -280,6 +309,7 @@ nav {
     font-size: 2.5rem;
     color: var(--neon-cyan);
     text-shadow: 0 0 15px var(--neon-cyan);
+
 }
 
 .media-overlay h4 {
@@ -323,4 +353,136 @@ nav {
         padding: 12px 25px;
         font-size: 0.9rem;
     }
+}
+
+.nav-links {
+    perspective: 1000px;
+}
+
+.nav-links a {
+    display: inline-block;
+    transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s, text-shadow 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-cyan);
+    text-shadow: -3px 3px 12px var(--neon-cyan), 0 0 25px var(--neon-pink);
+}
+
+.nav-links a:first-child:hover {
+    transform: rotateX(10deg) rotateY(15deg) translateZ(25px) scale(1.3);
+}
+
+.nav-links a:nth-child(2):hover {
+    transform: rotateX(10deg) translateZ(25px) scale(1.3);
+}
+
+.nav-links a:nth-child(3):hover {
+    transform: rotateX(10deg) rotateY(-15deg) translateZ(25px) scale(1.3);
+}
+
+.cyber-btn:hover {
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateY(0deg) translateZ(40px) scale(1.08);
+}
+
+.cyber-btn:active {
+    transform: rotateX(5deg) rotateY(-5deg) translateZ(10px) scale(0.98);
+    box-shadow: -2px 2px 5px var(--neon-pink);
+}
+
+
+
+
+
+
+.cyber-card,
+.media-box {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s, border-color 0.5s;
+    border-color: var(--neon-pink);
+}
+
+.cyber-card:nth-child(1):hover {
+    transform: rotateX(-15deg) rotateY(20deg) translateZ(50px);
+    box-shadow: -25px 30px 50px rgba(255, 0, 85, 0.4), 10px -10px 30px rgba(0, 240, 255, 0.25);
+}
+
+.cyber-card:nth-child(2):hover {
+    transform: rotateX(15deg) rotateY(0deg) translateZ(60px);
+    box-shadow: 0px 35px 50px rgba(255, 0, 85, 0.45), 0px -10px 30px rgba(0, 240, 255, 0.25);
+}
+
+.cyber-card:nth-child(3):hover {
+    transform: rotateX(-15deg) rotateY(-20deg) translateZ(50px);
+    box-shadow: 25px 30px 50px rgba(255, 0, 85, 0.4), -10px -10px 30px rgba(0, 240, 255, 0.25);
+}
+
+
+
+
+
+
+.specs-wrapper:hover {
+    transform: rotateX(4deg) rotateY(0deg) translateZ(25px);
+    box-shadow: 0 40px 70px rgba(0, 240, 255, 0.3), 0 0 40px rgba(255, 0, 85, 0.449);
+}
+
+.spec-row {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, background 1s, box-shadow 1s;
+}
+
+.spec-row:hover {
+    transform: translateZ(50px) scale(1.05);
+    background: rgba(0, 240, 255, 0.15);
+    border-left: 5px solid var(--neon-cyan);
+    box-shadow: 0 15px 30px rgba(0, 240, 255, 0.45);
+}
+
+
+
+
+
+
+.media-box:nth-child(1):hover {
+    transform: rotateX(-9deg) rotateY(20deg) translateZ(50px);
+    border-color: var(--neon-cyan);
+    box-shadow: -25px 30px 50px rgba(0, 240, 255, 0.4), 10px -10px 30px rgba(255, 0, 85, 0.25);
+}
+
+.media-box:nth-child(2):hover {
+    transform: rotateX(-9deg) rotateY(-20deg) translateZ(50px);
+    border-color: var(--neon-cyan);
+    box-shadow: -25px 30px 50px rgba(0, 240, 255, 0.4), 10px -10px 30px rgba(255, 0, 85, 0.25);
+}
+
+.cyber-card h3,
+.cyber-card p,
+.media-box .media-overlay h4 {
+    transform: translateZ(40px);
+    transition: transform 0.5s ease;
+}
+
+a,
+a *,
+button,
+button *,
+.nav-links a,
+.nav-links a *,
+.cyber-btn,
+.cyber-btn *,
+.cyber-card,
+.cyber-card *,
+.specs-wrapper,
+.specs-wrapper *,
+.media-box,
+.media-box *,
+.ticker-wrap,
+.ticker-track,
+.ticker-item,
+marquee {
+    cursor: url('https://cdn.cursors-4u.net/previews/arrow-825426cd-preview-63.webp') 0 0, pointer !important;
 }
